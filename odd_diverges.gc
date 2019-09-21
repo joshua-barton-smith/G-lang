@@ -1,5 +1,5 @@
 ;; Outputs 1 if X is even, diverges otherwise.
-%specvar X 2
+%specvar X 3
 ig X L
 unit Y
 goto E
@@ -10,4 +10,5 @@ goto L3
 ig X L
 unit Y
 goto E
-[L3] goto L3
+[L3] skip
+goto L3
