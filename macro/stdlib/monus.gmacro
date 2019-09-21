@@ -1,0 +1,21 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; Monus macro						      ;
+; Usage: monus (lv) (rv) (dst)        	  ;
+; Puts lv - rv into dst, or 0 if rv > lv  ;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+%prefix monus
+%input 3 variable 0 label
+
+%require assign
+%require ig
+%require goto
+
+assign _var1 _V1
+assign _var2 _V2
+ig _var2 _label1
+assign _V3 _var1
+goto E
+[_label1] _var1--
+_var2--
+ig _var2 _label1
+assign _V3 _var1

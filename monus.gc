@@ -1,0 +1,6 @@
+;; Performs monus of 2 variables
+;; just an implementation using the macro
+;; since monus is a pretty fundamental function
+%specvar X 5
+%specvar X2 0
+monus X X2 Y
