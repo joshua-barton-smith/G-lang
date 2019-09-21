@@ -1,0 +1,5 @@
+; everywhere diverging function
+; program will never halt. it diverges for all values of X.
+%specvar X 5
+[L] X++
+goto L

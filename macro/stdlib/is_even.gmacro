@@ -1,0 +1,27 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; Is even macro						      ;
+; Usage: iseven (src) (res)          	  ;
+; Checks if the value of src is even.     ;
+; If it is, res will be 1.				  ;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+%prefix iseven
+%input 2 variable 0 label
+
+%require ig
+%require assign
+%require unit
+%require goto
+%require zero
+
+assign _var1 _V1
+ig _var1 _label1
+unit _V2
+goto E
+[_label1] _var1--
+ig _var1 _label2
+zero _V2
+goto E
+[_label2] _var1--
+ig _var1 _label1
+unit _V2
+goto E

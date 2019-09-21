@@ -1,0 +1,18 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; Unconditional branch macro			  ;
+; Usage: goto (label)                	  ;
+; Immediately jumps to a label.           ;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+; a macro's minimum definition is just '%prefix <prefix command>'
+; plus the actual macro code.
+
+; 'input' is used to specify how many labels and variables are inputs to the macro.
+; formatted as '%input n variable m label'
+%input 0 variable 1 label
+
+; this is safe because the 'goto' used as a keyword is actually just matched in specific contexts.
+%prefix goto
+
+_var1++
+if _var1 not 0 goto _L1

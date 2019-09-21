@@ -1,0 +1,3 @@
+;; Outputs 1 if X is even, 0 otherwise.
+%specvar X 23
+iseven X Y

@@ -1,0 +1,28 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; Assignment macro						  ;
+; Usage: assign (dst) (src)         	  ;
+; Copies the value of src into dst.       ;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+%prefix assign
+%input 2 variable 0 label
+%require goto
+%require zero
+
+;; identified: this macro doesn't work properly if (dst) is not 0.
+;; this is easy to fix by zeroing out (dst) before running the rest of the macro.
+;; the reason for this is that the macro sums contents of (src) into (dst),
+;; so if (dst) already contains a value it results in a value of (src)+(dst).
+zero _V1
+
+[_label1] if _V2 not 0 goto _label2
+goto _label3
+[_label2] _V2--
+_V1++
+_var1++
+goto _label1
+[_label3] if _var1 not 0 goto _label4
+goto E
+[_label4] _var1--
+_V2++
+goto _label3

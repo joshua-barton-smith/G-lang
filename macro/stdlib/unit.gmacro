@@ -1,0 +1,13 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; Unit assignment macro					  ;
+; Usage: unit (tgt)         	  		  ;
+; Assigns a value of 1 into tgt.          ;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+%input 1 variable 0 label
+%prefix unit
+
+%require zero
+
+zero _V1
+_V1++

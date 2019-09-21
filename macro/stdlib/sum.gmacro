@@ -1,0 +1,19 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; Summation macro						             ;
+; Usage: sum (src1) (src2) (dst)       	             ;
+; Adds src1 and src2 and puts the result in dst.     ;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+%prefix sum
+%input 3 variable 0 label
+
+%require assign
+%require goto
+
+assign _V3 _V1
+assign _var1 _V2
+[_label2] if _var1 not 0 goto _label1
+goto E
+[_label1] _var1--
+_V3++
+goto _label2

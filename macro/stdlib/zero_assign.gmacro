@@ -1,0 +1,10 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; Zero assignment macro					  ;
+; Usage: zero (tgt)         	  		  ;
+; Assigns a value of 0 into tgt.          ;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+%input 1 variable 0 label
+%prefix zero
+[_label1] _V1--
+if _V1 not 0 goto _label1

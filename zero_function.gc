@@ -1,0 +1,6 @@
+; function which outputs 0 for all X
+; specify any value for X in below %specvar
+%specvar X 5
+
+assign V X
+zero Y

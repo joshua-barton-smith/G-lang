@@ -1,0 +1,14 @@
+;; Outputs 1 if X is even, 0 otherwise.
+%specvar X 3
+assign V X
+ig V L
+unit Y
+goto E
+[L] V--
+ig V L2
+zero Y
+goto E
+[L2] V--
+ig V L
+unit Y
+goto E

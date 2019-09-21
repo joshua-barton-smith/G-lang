@@ -1,0 +1,8 @@
+;; Convenicence macro to just do an if-goto in shorthand.
+;; This should go into a shorthand package instead of stdlib once packages are handled.
+;; Usage: ig (var to compare) (label to jump to)
+;; Expands to if (var) not 0 goto (label)
+%prefix ig
+%input 1 variable 1 label
+
+if _V1 not 0 goto _L1

@@ -1,0 +1,13 @@
+;; Outputs 1 if X is even, diverges otherwise.
+%specvar X 2
+ig X L
+unit Y
+goto E
+[L] X--
+ig X L2
+goto L3
+[L2] X--
+ig X L
+unit Y
+goto E
+[L3] goto L3
