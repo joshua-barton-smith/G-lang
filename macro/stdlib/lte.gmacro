@@ -1,0 +1,23 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; Less than or equal macro			      ;
+; Usage: lte (lhs) (rhs) (dst)        	  ;
+; Puts 1 into dst if lhs <= rhs, else 0   ;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+%prefix lte
+%input 3 variable 0 label
+
+%require assign
+%require monus
+%require ig
+%require unit
+%require goto
+%require zero
+
+assign _var1 _V1
+assign _var2 _V2
+monus _var1 _var2 _var3
+ig _var3 _label1
+unit _V3
+goto E
+[_label1] _var4++
+zero _V3
