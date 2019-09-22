@@ -1,0 +1,7 @@
+%specvar X 3
+%specvar X2 3
+
+be X X2 L1
+goto E
+[L1] Y++
+goto E

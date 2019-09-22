@@ -1,0 +1,43 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; Branch equal macro					  ;
+; Usage: be (v1) (v2) (label)        	  ;
+; Branches to label iff v1 == v2          ;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+%prefix be
+%input 2 variable 1 label
+
+assign _var1 _V1
+assign _var2 _V2
+; check if _V1 is already 0
+bz _var1 _label1
+; if not, start algorithm
+goto _label3
+; if _V1 was already 0, then check if _V2 also already 0
+[_label1] bz _var2 _label2
+; if not, _V1 0 and _V2 not, quit
+goto E
+; both already 0, just branch to label, they are equal
+[_label2] goto _L1
+
+; main algorithm
+; start by subtracting 1 from _V1
+[_label3] _var1--
+; if _V1 is now 0 we need to check if _V2 is already 0 or not.
+; because if we subtract 1 from _V2 and it comes down to 0, it could be EITHER 1 or 0.
+bz _var1 _label4
+; otherwise we continue with subtracting from _V2
+goto _label5
+; if _V2 is already 0, _V1 and _V2 could not be equal (_V1 reduced by 1 to reach 0 but _V2 not)
+; goto E
+[_label4] bz _var2 E
+; otherwise we continue with subtracting from _V2
+goto _label5
+[_label5] _var2--
+; check if _V1 is 0
+bz _var1 _label6
+; if it's not continue the algorithm
+goto _label3
+; if _V1 0 and _V2 0, both are equal
+[_label6] bz _var2 _L1
+; else _V1 0 and _V2 not, they are not equal
+goto E

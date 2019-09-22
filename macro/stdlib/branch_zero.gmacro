@@ -1,0 +1,7 @@
+%prefix bz
+%input 1 variable 1 label
+
+%require goto
+
+if _V1 not 0 goto E
+goto _L1

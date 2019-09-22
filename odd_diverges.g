@@ -1,34 +1,34 @@
 %vars Y,X,V0,V1,V2,V3
 %specvar X 3
 
-if X not 0 goto 10 ; start of macro ig (ig X L)
-skip ; end of macro ig
-Y-- ; start of macro zero_assign (zero Y ; start of macro unit (unit Y))
+if X not 0 goto 10
+skip
+Y--
 if Y not 0 goto 2
-skip ; end of macro zero_assign
+skip
 Y++
-skip ; end of macro unit
-V0++ ; start of macro unconditional_branch (goto E)
+skip
+V0++
 if V0 not 0 goto 30
-skip ; end of macro unconditional_branch
+skip
 X--
-if X not 0 goto 16 ; start of macro ig (ig X L2)
-skip ; end of macro ig
-V1++ ; start of macro unconditional_branch (goto L3)
+if X not 0 goto 16
+skip
+V1++
 if V1 not 0 goto 27
-skip ; end of macro unconditional_branch
+skip
 X--
-if X not 0 goto 10 ; start of macro ig (ig X L)
-skip ; end of macro ig
-Y-- ; start of macro zero_assign (zero Y ; start of macro unit (unit Y))
+if X not 0 goto 10
+skip
+Y--
 if Y not 0 goto 19
-skip ; end of macro zero_assign
+skip
 Y++
-skip ; end of macro unit
-V2++ ; start of macro unconditional_branch (goto E)
+skip
+V2++
 if V2 not 0 goto 30
-skip ; end of macro unconditional_branch
-V3++ ; start of macro unconditional_branch ([L3] goto L3)
+skip
+V3++
 if V3 not 0 goto 27
-skip ; end of macro unconditional_branch
+skip
 exit
