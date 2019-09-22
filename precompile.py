@@ -103,7 +103,7 @@ def macro_loading(macro_folders):
 					mc = [l for l in mc if not l.startswith(';')]
 					# now we process % directives
 					# some will be processed but the rest will be ignored
-					mc_struct = {'name': filename.replace('.gmacro', ''), 'requires': []}
+					mc_struct = {'name': filename.replace('.gmacro', ''), 'requires': [], 'label_count': 0, 'var_count': 0}
 					line = 0
 					l = mc[line]
 					while (l.startswith("%")):
