@@ -298,6 +298,7 @@ def macro_expansion(program, vars, labels):
 		print("Expanding macros for program")
 	line = 0
 	label_checker = re.compile(r'\[\_[A-Za-z]+[0-9]*\]$')
+	label_checker_notmacro = re.compile(r'\[[A-Za-z]+[0-9]*\]$')
 	inc_checker = re.compile(r'\_[A-Za-z]+[0-9]*\+\+$')
 	dec_checker = re.compile(r'\_[A-Za-z]+[0-9]*\-\-$')
 	# iterate over all the statements in the program
@@ -310,6 +311,13 @@ def macro_expansion(program, vars, labels):
 		stmt_tokens = [token for token in stmt_tokens if token.strip() != ""]
 		# start with the first token in the list.
 		first = stmt_tokens[0]
+		# check for leading labels on the line
+		if label_checker_notmacro.match(first):
+			# we need to confirm this label is not already in labels.
+			if not first[1:-1] in labels:
+				labels.append(first[1:-1])
+			stmt_tokens = stmt_tokens[1:]
+			first = stmt_tokens[0]
 		# we only care about tokens for macros
 		if first in macros:
 			# if a macro exists we need to define a label for the line immediately following the macro.
