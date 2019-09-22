@@ -321,7 +321,6 @@ def macro_expansion(program, vars, labels):
 			has_fl_prefix = True
 			fl_prefix = first
 			first = stmt_tokens[0]
-
 		# we only care about tokens for macros
 		if first in macros:
 			# if a macro exists we need to define a label for the line immediately following the macro.
@@ -395,6 +394,14 @@ def macro_expansion(program, vars, labels):
 				first = mc_tokens[0]
 				# if it's [L] we should extract the label and discard.
 				if label_checker.match(first):
+					# if it's the first line of the macro AND there's an fl prefix
+					if lmc == 0 and has_fl_prefix:
+						lb = first[1:-1]
+						if lb.startswith('_label'):
+							lab_repl[lb] = fl_prefix[1:-1]
+							del mc_tokens[0]
+							first = mc_tokens[0]
+							mc_code[lmc] = " ".join(mc_tokens)
 					# we need to confirm this label is not already in labels.
 					if not first[1:-1] in labels:
 						# now we want to check if this label needs replacing
