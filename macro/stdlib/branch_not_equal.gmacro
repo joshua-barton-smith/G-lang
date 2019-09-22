@@ -1,0 +1,5 @@
+%prefix bne
+%input 2 variable 1 label
+
+be _V1 _V2 E
+goto _L1
