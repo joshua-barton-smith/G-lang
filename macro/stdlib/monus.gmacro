@@ -7,15 +7,14 @@
 %input 3 variable 0 label
 
 %require assign
-%require ig
 %require goto
 
 assign _var1 _V1
 assign _var2 _V2
-ig _var2 _label1
+if _var2 not 0 goto _label1
 assign _V3 _var1
 goto E
 [_label1] _var1--
 _var2--
-ig _var2 _label1
+if _var2 not 0 goto _label1
 assign _V3 _var1

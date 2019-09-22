@@ -7,21 +7,20 @@
 %prefix iseven
 %input 2 variable 0 label
 
-%require ig
 %require assign
 %require unit
 %require goto
 %require zero
 
 assign _var1 _V1
-ig _var1 _label1
+if _var1 not 0 goto _label1
 unit _V2
 goto E
 [_label1] _var1--
-ig _var1 _label2
+if _var1 not 0 goto _label2
 zero _V2
 goto E
 [_label2] _var1--
-ig _var1 _label1
+if _var1 not 0 _label1
 unit _V2
 goto E
