@@ -1,8 +1,8 @@
-#G-language
+# G-language
 G-language is a very simple 'toy' language used to illustrate concepts in the theory of computation.
 Although it is mostly used for education it is also still fully functional.
 
-##Syntax
+## Syntax
 G-language has a very simple definition. It supports variables, expressed generically as V, which can take any value from the naturals; and labels, expressed generically as L, which point to specific lines in a G-program. Building from variables and labels, G-language supports 4 kinds of statements:
 
 * `V++` to increment a variable by 1
@@ -20,7 +20,7 @@ The variable `Y` is used by the runtime as an 'output' register. The program wil
 
 The label `E` is used by the runtime as a termination register. The program will immediately terminate if a branch leads to the label `E`. You cannot create a label `E` yourself as it is reserved by the system.
 
-##Macros
+## Macros
 Macros are pieces of code which are reusable and which perform specific functions. G-programs are cumbersome to write and can become very long, and macros provide a way to shorten your G-programs and make them more readable.
 
 For example, the 'sum' macro from the stdlib library provides a way to add together two variables, A and B, and store the result in C:
@@ -46,7 +46,7 @@ For example take the first couple of lines of assignment.gmacro:
 
 In this case, \_label1, \_label2, and \_label3 define non-input labels used by the macro, and \_V2 defines the first input variable to the macro. A macro could also use e.g. \_L1 to reference the first input label to the macro, or \_var1 to reference a non-input variable used by the macro. These formats (\_label\*, \_var\*, \_L\*, \_V\*) are required and can't be deviated from much.
 
-##Compilation
+## Compilation
 
 An input file (which, by convention, has a .gc extension) can be compiled by running a line like this:
 
@@ -58,7 +58,7 @@ Optionally you can specify the `-debug` flag which will enable debug mode and pr
 
 The compiled code will have an extra `%vars` directive at the top indicating to the runtime what variable names are used in the program. Additionally, if you specified any other `%directives` in your .gc file, they will be passed through unchanged to the .g file. The most useful of these would be e.g. `%specvar X 5`, which allows you to initialize variables to non-zero values at runtime.
 
-##Running
+## Running
 
 A compiled G-program can be run by:
 
