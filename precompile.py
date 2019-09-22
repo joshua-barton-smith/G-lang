@@ -312,12 +312,16 @@ def macro_expansion(program, vars, labels):
 		# start with the first token in the list.
 		first = stmt_tokens[0]
 		# check for leading labels on the line
+		has_fl_prefix = False
 		if label_checker_notmacro.match(first):
 			# we need to confirm this label is not already in labels.
 			if not first[1:-1] in labels:
 				labels.append(first[1:-1])
 			stmt_tokens = stmt_tokens[1:]
+			has_fl_prefix = True
+			fl_prefix = first
 			first = stmt_tokens[0]
+
 		# we only care about tokens for macros
 		if first in macros:
 			# if a macro exists we need to define a label for the line immediately following the macro.
@@ -409,12 +413,14 @@ def macro_expansion(program, vars, labels):
 							has_prefix = True
 							del mc_tokens[0]
 							first = mc_tokens[0]
+							mc_code[lmc] = " ".join(mc_tokens)
 						elif lb in lab_repl and lb.startswith('_label'):
 							# now replace the line with the new case
 							label_prefix = "[" + lab_repl[lb] + "] "
 							has_prefix = True
 							del mc_tokens[0]
 							first = mc_tokens[0]
+							mc_code[lmc] = " ".join(mc_tokens)
 					else:
 						print("Error in macro expansion: Repeated label")
 						print(stmt)
@@ -562,6 +568,8 @@ def macro_expansion(program, vars, labels):
 					mc_code[lmc] = label_prefix + mc_code[lmc]
 				if lmc == 0 and debug:
 					mc_code[lmc] = mc_code[lmc] + " ; start of macro " + macro['name'] + " (" + stmt + ")"
+				if lmc == 0 and has_fl_prefix:
+					mc_code[lmc] = fl_prefix + " " + mc_code[lmc]
 				lmc += 1
 			# remove the original line from the program
 			program.pop(line)
@@ -715,16 +723,17 @@ def precompile(file):
 			# macro code into those lines.
 			macro_expansion(program, vars, labels)
 
-			# 4. syntax recheck
-			# this is important to make sure the macros expanded out properly,
-			# to check if more macros need to be expanded,
-			# and to recompute var/label lists
-			(v, l, has_macro) = syntax_check(program)
 			# output to .g file
 			noext = file.split('.')[0]
 			if debug_extreme:
 				with open(noext + ".g" + str(x), "w+") as f2:
 					f2.write("\n".join(program))
+
+			# 4. syntax recheck
+			# this is important to make sure the macros expanded out properly,
+			# to check if more macros need to be expanded,
+			# and to recompute var/label lists
+			(v, l, has_macro) = syntax_check(program)
 
 			x += 1
 

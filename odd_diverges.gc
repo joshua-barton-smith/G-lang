@@ -10,5 +10,4 @@ goto L3
 ig X L
 unit Y
 goto E
-[L3] skip
-goto L3
+[L3] goto L3
