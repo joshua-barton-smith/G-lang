@@ -86,6 +86,9 @@ def macro_loading(macro_folders):
 	for folder in macro_folders:
 		if debug:
 			print("Start processing macros from library " + folder)
+		if not os.path.exists('macro/' + folder):
+			print("No macro folder found for linked folder " + folder + ", skipping")
+			continue
 		for filename in os.listdir('macro/' + folder):
 			if filename.endswith('.gmacro'):
 				with open(os.path.join('macro/' + folder, filename)) as macro:
@@ -651,6 +654,15 @@ def precompile(file):
 		debug = True
 		debug_extreme = True
 
+	folders_to_link = ['stdlib']
+
+	# check for -link arguments
+	for i in range(len(sys.argv)):
+		arg = sys.argv[i]
+		if arg == '-link' and len(sys.argv) != (i+1):
+			nextarg = sys.argv[i+1]
+			folders_to_link.append(nextarg)
+
 	print ("Compiling G-program from source file " + file)
 	# open the input file
 	with open(file) as f:
@@ -676,7 +688,7 @@ def precompile(file):
 		# all folders in the macro subdirectory are 'packages' of macros.
 		# the stdlib folder is loaded by default as it contains a lot of generally useful macros.
 		# any other folders currently are not loaded but we will implement %directives for this.
-		macro_loading(['stdlib'])
+		macro_loading(folders_to_link)
 		macro_requirement_checking()
 
 		# 0b. E insertion
